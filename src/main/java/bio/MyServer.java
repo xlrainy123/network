@@ -20,15 +20,16 @@ public class MyServer {
             br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         }
 
-
         public void run(){
             String content = "";
             System.out.println("开始监听");
             try{
                 while(true){
                     content = br.readLine();
+                    if (content == null || "".equals(content)){
+                        continue;
+                    }
                     System.out.println("开始广播");
-                    System.out.println(clientSockets);
                     for (Socket client : clientSockets){
                         bw = new PrintStream(client.getOutputStream());
                         bw.println(content);
