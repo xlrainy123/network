@@ -102,8 +102,8 @@ public class MyClient {
 
         Socket socket = new Socket();
         MyClient client = new MyClient(socket);
-        client.connect();
         client.config();
+        client.connect();
         client.startup();
 
     }
