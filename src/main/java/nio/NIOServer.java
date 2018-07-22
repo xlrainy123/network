@@ -104,7 +104,10 @@ public class NIOServer {
             Charset charset = Charset.forName(coding);
             CharsetDecoder decoder = charset.newDecoder();
             while((client.read(bb)) > 0){
+                //read()方法是往bb里put数据，之后要读的话，需要flip一下
+                bb.flip();
                 content += decoder.decode(bb);
+                bb.clear();
             }
             return content;
         }
